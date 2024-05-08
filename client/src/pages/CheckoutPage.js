@@ -19,17 +19,22 @@ const CheckoutPage = () => {
     }
 
     const submitCartDataToOrders = () => {
-        const data = {
-            orderID: generateOrderID(), // Generate or fetch the orderID
-            addtocart: cartData // Pass the cartData array
+        if(cartData.length > 0){
+            const data = {
+                orderID: generateOrderID(), // Generate or fetch the orderID
+                addtocart: cartData // Pass the cartData array
+                
+            };
+            axios.post('http://localhost:5000/orders/add', data)
+                .then(response => {
+                    console.log('Order submitted successfully:', response.data);
+                    setCartData([]);
+                })
+                .catch(error => console.error('Error submitting order:', error));
+        }else{
             
-        };
-        axios.post('http://localhost:5000/orders/add', data)
-            .then(response => {
-                console.log('Order submitted successfully:', response.data);
-                setCartData([]);
-            })
-            .catch(error => console.error('Error submitting order:', error));
+        }
+        
         
     }
 
@@ -73,9 +78,9 @@ const CheckoutPage = () => {
                 cartData.map(item => (
                     <div className="cart-item" key={item.user_id}>
                         
-                        <p><strong>User ID:</strong> {item.user_id}</p>
+                        <p><strong>Cart ID:</strong> {item.user_id}</p>
                         <p><strong>Designer:</strong> {item.designer}</p>
-                        <p><strong>Product Name:</strong> {item.product_id}</p>
+                        <p><strong>Product ID:</strong> {item.product_id}</p>
                         <p><strong>Beds:</strong> {item.numBed}</p>
                         <p><strong>Baths:</strong> {item.numBath}</p>
                         <p><strong>Quantity:</strong> {item.q}</p>
@@ -84,10 +89,10 @@ const CheckoutPage = () => {
                     </div>
                 ))
             ) : (
-                <div>No items in your cart</div>
+                <div style={{marginBottom:'20px', marginLeft:"40%"}}>No items in your cart</div>
             )}
 
-            <button onClick={submitCartDataToOrders} style={{width:"150px", height:"60px", fontSize:"18px"}}>Submit Order</button>
+            <button onClick={submitCartDataToOrders} style={{width:"150px", height:"60px", fontSize:"18px"}}>Place Order</button>
         </div>
     );
 }

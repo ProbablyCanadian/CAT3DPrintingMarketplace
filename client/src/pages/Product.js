@@ -75,9 +75,9 @@ const Product = () => {
           //const convertBath = parseInt(bath, 10);
       
           const cart = {
-            user_id: 1,
-            designer: 'Placeholder Designer',
-            product_id: 'Placeholder Product',
+            user_id: Math.floor(Math.random()*101),
+            designer: structureInfo.user_id,
+            product_id: productId,
             numBed: 2,
             numBath: 1,
             q: 3,

@@ -63,10 +63,15 @@ function OrdersPage() {
                         orderSearch.map((order) => (
                             <div style={{marginLeft: "20px"}} key={order._id.$oid}>
                                 <h3>Order ID: {order.orderID}</h3>
-                                <ul>
+                                <ul style={{marginLeft:'20px'}}>
                                     {order.structuresOrdered.map((structure) => (
                                         <li key={structure._id.$oid}>
-                                            User ID: {structure.user_id}, Designer: {structure.designer}, Product ID: {structure.product_id}, Beds: {structure.numBed}, Baths: {structure.numBath}, Quantity: {structure.q}, Total Cost: {structure.total_cost} {}
+                                            Cart ID: {structure.user_id}, 
+                                            Designer: {structure.designer}, 
+                                            Product ID: {structure.product_id}, 
+                                            Beds: {structure.numBed}, Baths: {structure.numBath}, 
+                                            Quantity: {structure.q}, 
+                                            Total Cost: {structure.total_cost} {}
                                         </li>
                                     ))}
                                 </ul>
@@ -84,10 +89,17 @@ function OrdersPage() {
                     {orders.map((order) => (
                         <div key={order._id.$oid}>
                             <h3>Order ID: {order.orderID}</h3>
-                            <ul>
+                            <ul style={{marginLeft:"20px"}}>
                                 {order.structuresOrdered.map((structure) => (
                                     <li key={structure._id.$oid}>
-                                        User ID: {structure.user_id}, Designer: {structure.designer}, Product ID: {structure.product_id}, Beds: {structure.numBed}, Baths: {structure.numBath}, Quantity: {structure.q}, Total Cost: {structure.total_cost} {}
+                                        <li key={structure._id.$oid}>
+                                            Cart ID: {structure.user_id}, 
+                                            Designer: {structure.designer}, 
+                                            Product ID: {structure.product_id}, 
+                                            Beds: {structure.numBed}, Baths: {structure.numBath}, 
+                                            Quantity: {structure.q}, 
+                                            Total Cost: {structure.total_cost} {}
+                                        </li> {}
                                     </li>
                                 ))}
                             </ul>
